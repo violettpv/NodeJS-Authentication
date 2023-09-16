@@ -6,5 +6,55 @@
     <title>Main Page</title>
     <link rel="stylesheet" href="./css/index.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>Welcome to the main page!</h2>
+      </div>
+      <div class="content">
+        <form action="" id="form">
+          <div class="data-container">
+            <div class="data">
+              <label for="username">Username:</label>
+              <input id="username" value="USER123" disabled />
+
+              <label for="password">Password:</label>
+              <input
+                id="password"
+                type="password"
+                value="Tes&Rt34*51"
+                disabled
+              />
+            </div>
+
+            <div class="data">
+              <label for="fullname">Fullname:</label>
+              <input id="fullname" value="John Doe" disabled />
+
+              <label for="group">Group:</label>
+              <input id="group" value="TR-01" disabled />
+
+              <label for="phone">Phone:</label>
+              <input id="phone" value="(050)-700-70-70" disabled />
+
+              <label for="address">City:</label>
+              <input id="address" value="Toronto" disabled />
+
+              <label for="email">Email:</label>
+              <input id="email" value="johndoe@gmail.com" disabled />
+            </div>
+          </div>
+
+          <div class="buttons">
+            <button id="edit-button" onclick="editData()">Edit data</button>
+            <button id="save-button" disabled>Save data</button>
+            <button id="delete-button">Delete account</button>
+            <button id="logout-button">Logout</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="./js/index.js"></script>
+  </body>
 </html>

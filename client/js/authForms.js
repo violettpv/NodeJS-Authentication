@@ -100,11 +100,6 @@ function validateRegisterForm() {
   }
   if (success) {
     alert("Всі поля заповнені коректно.");
-    // fullnameSpan.innerHTML = fullname.value;
-    // groupSpan.innerHTML = group.value;
-    // phoneSpan.innerHTML = phone.value;
-    // addressSpan.innerHTML = address.value;
-    // emailSpan.innerHTML = email.value;
     myForm.reset();
   } else {
     alert("Ви ввели некоректні дані.");
@@ -133,4 +128,38 @@ validateLoginForm = () => {
     alert("Ви ввели некоректні дані.");
   }
   success = true;
+};
+
+const verified = (
+  username,
+  password,
+  fullname,
+  group,
+  phone,
+  address,
+  email
+) => {
+  fetch(API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username,
+      password,
+      fullname,
+      group,
+      idcard,
+      phone,
+      address,
+      email,
+    }),
+  })
+    .then((res) => res.json())
+    .then((obj) => localStorage.setItem("user", JSON.stringify(obj)))
+    .then(() => location.replace("/index.html"))
+    .catch((e) => {
+      clearForm();
+      console.error(e);
+    });
 };
