@@ -1,0 +1,202 @@
+:root {
+  --light-purple: #818cf8;
+  --dark-purple: #421a8c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100%;
+  min-height: 100%;
+  font-family: "Times New Roman", Times, serif;
+  color: black;
+  background-color: #cad0ff;
+}
+h1 {
+  font-family: verdana;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-variant: small-caps;
+  text-align: center;
+  font-size: 35px;
+  color: rgb(119, 0, 255);
+  text-shadow: rgb(50, 0, 82) 2px 2px 2px;
+}
+
+h3 {
+  margin: 5px;
+  color: var(--dark-purple);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: bold;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 100% of the viewport height */
+}
+.container-header {
+  margin: 15px;
+}
+
+.container-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+  width: 50%;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  width: 100%;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+}
+.column:nth-child(1) {
+  margin: 0 5px 0 0;
+}
+form .form-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+form .input-div {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+}
+form input[type="text"],
+form input[type="password"] {
+  padding: 10px;
+  margin: 4px 0 4px 0;
+  border: 2px #818cf8 solid;
+  border-radius: 5px;
+  color: black;
+}
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+  outline: none;
+}
+
+form input[type="text"]::placeholder,
+form input[type="password"]::placeholder {
+  color: rgb(206, 206, 206);
+}
+.input-error {
+  outline: 1.5px solid red;
+  border-radius: 5px;
+}
+.show-password {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 4px 0 6px 0;
+  width: 100%;
+  font-size: 13px;
+  text-transform: none;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: var(--dark-purple);
+}
+.show-password input[type="checkbox"] {
+  margin: 0 5px 0 0;
+}
+
+/* Submit button */
+.button {
+  margin-top: 15px;
+  --color: rgba(88, 101, 242, 1);
+  background-color: var(--color);
+  padding: 16px 25px;
+  border-radius: 0.3em;
+  overflow: hidden;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 17px;
+  border: 1px solid var(--color);
+  font-family: inherit;
+  text-transform: uppercase;
+  color: white;
+}
+
+.button:hover {
+  color: white;
+  background-color: var(--dark-purple);
+  border: 1px solid darkblue;
+}
+
+.goto-auth {
+  margin: 15px;
+  font-size: 14px;
+  color: var(--dark-purple);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.goto-auth a {
+  color: var(--dark-purple);
+  text-decoration: none;
+}
+.goto-auth a:hover {
+  color: var(--light-purple);
+  text-decoration: underline;
+}
+
+/* tooltip text on username in register form */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltip input[type="text"],
+.tooltip input[type="password"] {
+  width: 100%;
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 300px;
+  min-width: 350px;
+  background-color: #292929;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 0.5rem;
+  position: absolute;
+  z-index: 1;
+  bottom: 160%;
+  left: 20%;
+  margin-left: -80px;
+  font-family: sans-serif;
+}
+
+.tooltip .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 10%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #292929 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+}
