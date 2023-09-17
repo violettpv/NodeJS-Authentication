@@ -1,3 +1,10 @@
+const checkLocalStorage = () => {
+  if (!localStorage.getItem("data")) {
+    location.replace("/login.html");
+  }
+};
+checkLocalStorage();
+
 const form = document.getElementById("form");
 const username = document.getElementById("username");
 const password = document.getElementById("password");

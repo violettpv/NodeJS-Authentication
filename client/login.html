@@ -12,7 +12,7 @@
         <h1>Login</h1>
       </div>
       <div class="container-form">
-        <form action="./js/authForms.js" method="post" id="login-form">
+        <form method="post" id="login-form">
           <div class="form-inputs">
             <div class="column">
               <div class="input-div">
@@ -46,12 +46,7 @@
               </div>
             </div>
           </div>
-          <input
-            type="submit"
-            class="button"
-            value="Login"
-            onclick="validateLoginForm()"
-          />
+          <input type="submit" class="button" value="Login" id="login-button" />
           <div class="goto-auth">
             <a href="register.html">Click here to register.</a>
           </div>
@@ -59,6 +54,6 @@
       </div>
     </div>
 
-    <script src="./js/authForms.js"></script>
+    <script src="./js/login.js"></script>
   </body>
 </html>
