@@ -11,8 +11,8 @@
 body {
   height: 100%;
   min-height: 100%;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: black;
   background-color: #cad0ff;
 }
@@ -84,4 +84,9 @@ form {
   background-color: #c0c0c0;
   color: #a0a0a0;
   cursor: not-allowed;
+}
+
+.input-error {
+  outline: 1.5px solid red;
+  border-radius: 5px;
 }
