@@ -46,6 +46,7 @@ const registerUser = asyncHandler(async (req, res) => {
       phone: user.phone,
       address: user.address,
       email: user.email,
+      isAdmin: user.isAdmin,
       token: generateToken(user._id),
     });
   } else {
@@ -72,6 +73,7 @@ const loginUser = asyncHandler(async (req, res) => {
       phone: user.phone,
       address: user.address,
       email: user.email,
+      isAdmin: user.isAdmin,
       token: generateToken(user._id),
     });
   } else {
@@ -145,10 +147,120 @@ const generateToken = (id) => {
   });
 };
 
+// @desc    Get all users
+// @route   GET /api/users/all
+// @access  Public
+const getUsers = asyncHandler(async (req, res) => {
+  if (!req.user) {
+    res.status(401);
+    throw new Error('Unauthorized');
+  }
+  if (!req.user.isAdmin) {
+    res.status(401);
+    throw new Error('User is not an admin');
+  }
+
+  const users = await User.find({});
+  res.status(200).json(users);
+});
+
+// @desc    Create first user - admin
+// @route   GET /api/users/admin
+// @access  Public
+const createAdmin = asyncHandler(async (req, res) => {
+  const newuser = {
+    username: 'superadmin',
+    password: 'adminQWERTY123*',
+    fullname: 'Super Admin',
+    group: 'SA-00',
+    phone: '(066)-666-66-66',
+    address: 'Pentagon',
+    email: 'superadmin@gmail.com',
+    isAdmin: true,
+  };
+
+  // Check if user exists
+  const userExists = await User.findOne({ email: newuser.email });
+  if (userExists) {
+    res.status(400);
+    throw new Error('User already exists');
+  }
+
+  // Hash password
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(newuser.password, salt);
+
+  // Create user
+  const user = await User.create({
+    ...newuser,
+    password: hashedPassword,
+  });
+
+  if (user) {
+    res.status(201).json({
+      _id: user.id,
+      username: user.username,
+      fullname: user.fullname,
+      group: user.group,
+      phone: user.phone,
+      address: user.address,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      token: generateToken(user._id),
+    });
+  } else {
+    res.status(400);
+    throw new Error('Invalid user data');
+  }
+});
+
+// @desc    Set admin flag
+// @route   PUT /api/users/setadm/:id
+// @access  Public
+const promoteToAdmin = asyncHandler(async (req, res) => {
+  if (!req.user) {
+    res.status(401);
+    throw new Error('Unauthorized');
+  }
+
+  if (!req.user.isAdmin) {
+    res.status(401);
+    throw new Error('User is not an admin');
+  }
+
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    res.status(400);
+    throw new Error('User not found');
+  }
+
+  const { username, password, fullname, group, phone, address, email } = user;
+  const updatedUser = await User.findByIdAndUpdate(
+    req.params.id,
+    {
+      username,
+      password,
+      fullname,
+      group,
+      phone,
+      address,
+      email,
+      isAdmin: true,
+    },
+    {
+      new: true,
+    }
+  );
+  res.status(200).json({ ...updatedUser._doc, token: generateToken(req.user._id) });
+});
+
 module.exports = {
   registerUser,
   loginUser,
   getMe,
   deleteUser,
   updateUser,
+  getUsers,
+  createAdmin,
+  promoteToAdmin,
 };

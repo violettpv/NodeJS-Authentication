@@ -62,8 +62,14 @@ const loginUser = (username, password) => {
       }
     })
     .then((res) => res.json())
-    .then((obj) => localStorage.setItem('data', JSON.stringify(obj)))
-    .then(() => location.replace('/index.html'))
+    .then((obj) => {
+      localStorage.setItem('data', JSON.stringify(obj));
+      if (obj.isAdmin) {
+        location.replace('/admin.html');
+      } else {
+        location.replace('/index.html');
+      }
+    })
     .catch((e) => {
       alert(e);
     });
