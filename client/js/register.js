@@ -1,3 +1,15 @@
+const API_URL = '/api/users';
+// variables
+const formRegister = document.getElementById('register-form');
+const usernameRegister = document.getElementById('register-username');
+const passwordRegister = document.getElementById('register-password');
+const passwordConfirm = document.getElementById('confirm-password');
+const fullname = document.getElementById('fullname');
+const group = document.getElementById('group');
+const phone = document.getElementById('phone');
+const address = document.getElementById('address');
+const email = document.getElementById('email');
+// regex
 let checkName = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/;
 let checkGroup = /[A-Z][A-Z]\-[0-9][0-9]/;
 let checkPhone = /^\([0-9]{3}\)-[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
@@ -20,19 +32,6 @@ showPasswords = () => {
     checkbox.checked = false;
   }
 };
-
-// variables
-const API_URL = '/api/users';
-
-const formRegister = document.getElementById('register-form');
-const usernameRegister = document.getElementById('register-username');
-const passwordRegister = document.getElementById('register-password');
-const passwordConfirm = document.getElementById('confirm-password');
-const fullname = document.getElementById('fullname');
-const group = document.getElementById('group');
-const phone = document.getElementById('phone');
-const address = document.getElementById('address');
-const email = document.getElementById('email');
 
 validateRegisterForm = () => {
   let success = true;

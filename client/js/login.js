@@ -1,3 +1,9 @@
+const API_URL = '/api/users';
+// variables
+const formLogin = document.getElementById('login-form');
+const usernameLogin = document.getElementById('login-username');
+const passwordLogin = document.getElementById('login-password');
+// regex
 let checkName = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/;
 let checkGroup = /[A-Z][A-Z]\-[0-9][0-9]/;
 let checkPhone = /^\([0-9]{3}\)-[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
@@ -17,13 +23,6 @@ showLoginPassword = () => {
     checkbox.checked = false;
   }
 };
-
-// variables
-const API_URL = '/api/users';
-
-const formLogin = document.getElementById('login-form');
-const usernameLogin = document.getElementById('login-username');
-const passwordLogin = document.getElementById('login-password');
 
 validateLoginForm = () => {
   let success = true;
